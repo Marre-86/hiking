@@ -59,3 +59,11 @@ $dropdown-link-hover-bg:        $primary !default;
 
 $navbar-dark-color:             rgba($white, .8) !default;
 $navbar-dark-hover-color:       $white !default;
+
+// Body (from laravel/ui)
+$body-bg: #f8fafc;
+
+// Typography (from laravel/ui)
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
