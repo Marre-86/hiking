@@ -1,2 +1,3 @@
+[![author-check](https://github.com/Marre-86/hiking/actions/workflows/author-check.yml/badge.svg)](https://github.com/Marre-86/hiking/actions/workflows/author-check.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/31c876db7b2535867faf/maintainability)](https://codeclimate.com/github/Marre-86/hiking/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/31c876db7b2535867faf/test_coverage)](https://codeclimate.com/github/Marre-86/hiking/test_coverage)
