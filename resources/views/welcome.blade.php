@@ -2,5 +2,6 @@
 @section('content')
 <div class="w-60">
     <p>Welcome page</p>
+    <div id="map"></div>
 </div>
 @endsection
