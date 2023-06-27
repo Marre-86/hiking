@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "@rails/ujs": "^7.0.5",
+        "alpinejs": "^3.12.2",
         "bootstrap-scss": "^5.3.0"
     }
 }

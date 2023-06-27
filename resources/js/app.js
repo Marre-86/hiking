@@ -1,6 +1,6 @@
 import './bootstrap';
-import './Control.FullScreen';
-import './map';
 import ujs from '@rails/ujs';
+import Alpine from 'alpinejs';
 
 ujs.start();
+Alpine.start();

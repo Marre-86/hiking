@@ -1,4 +1,6 @@
-  var elevation_options = {
+import './Control.FullScreen';
+ 
+ var elevation_options = {
     position: "bottomleft",
     theme: "lightblue-theme",
     detached: true,
@@ -10,6 +12,12 @@
     height: 150,
     waypoints: false,
   };
+
+  const mapElement = document.getElementById('map');
+  const filename = mapElement.dataset.trackFile;
+  const basePath = '/storage/track_files/';
+  const trackFilePath = basePath + filename;
+
   var ghyb = L.tileLayer("https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}", {
     maxZoom: 19,
     attribution: 'Google Hybrid',
@@ -52,7 +60,7 @@
     if (controlElevation) {
       map.removeControl(controlElevation);
       controlElevation = L.control.elevation(elevation_options).addTo(map);
-      controlElevation.load("/gpx/ala-archa.gpx");
+      controlElevation.load(decodeURIComponent(trackFilePath));
     }
   }
 
@@ -67,4 +75,4 @@
   var controlElevation = L.control.elevation(elevation_options).addTo(map);
 
   // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-  controlElevation.load("/gpx/ala-archa.gpx");
+  controlElevation.load(decodeURIComponent(trackFilePath));
