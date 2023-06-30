@@ -1,4 +1,8 @@
-#map { height: 360px; width: 800px;}
+#map {
+  height: 360px;
+  width: 800px;
+}
+
 div[id^=elevation-] {
     width: 800px;
 }
@@ -24,4 +28,8 @@ div[id^=elevation-] {
 
 .row {
   margin-bottom:1rem;
+}
+
+.list-group-item {
+  height: 2.5rem;
 }

@@ -10,6 +10,7 @@ class Activity extends Model
     use HasFactory;
 
     protected $fillable = [
-        'track_file'
+        'track_file', 'distance', 'avgSpeed', 'avgPace', 'minAltitude', 'maxAltitude',
+        'cumulativeElevationGain', 'cumulativeElevationLoss', 'startedAt', 'finishedAt'
     ];
 }

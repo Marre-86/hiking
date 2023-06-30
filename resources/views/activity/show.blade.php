@@ -14,12 +14,45 @@
 @endpush
 
 @section('content')
-    <div class="w-60">
+    <div class="w-100">
         <p>Show given activity page</p>
+        <div style="float:left">
+            @if ($activity->track_file)
+                <div id="map" data-track-file="{{ $activity->track_file }}"></div>
+            @else
+                <p>No track for this activity</p>
+            @endif
+        </div>
         @if ($activity->track_file)
-            <div id="map" data-track-file="{{ $activity->track_file }}"></div>
-        @else
-            <p>No track for this activity</p>
+            <ul class="list-group" style="float:left; margin-left:2rem;">
+                <li class="list-group-item d-flex align-items-baseline">
+                    Distance<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{ $activity->distance }}</span>m
+                </li>
+                <li class="list-group-item d-flex align-items-baseline">
+                    Average Speed<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{ $activity->avgSpeed }}</span>
+                </li>
+                <li class="list-group-item d-flex align-items-baseline">
+                    Average Pace<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->avgPace }}</span>
+                </li>
+                <li class="list-group-item d-flex align-items-baseline">
+                    Min Altitude<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->minAltitude }}</span>m
+                </li>
+                <li class="list-group-item d-flex align-items-baseline">
+                    Max Altitude<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->maxAltitude }}</span>m
+                </li>
+                <li class="list-group-item d-flex align-items-baseline">
+                    Elevation Gain<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->cumulativeElevationGain }}</span>m
+                </li>
+                <li class="list-group-item d-flex align-items-baseline">
+                    Elevation Loss<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->cumulativeElevationLoss }}</span>m
+                </li>
+                <li class="list-group-item d-flex align-items-baseline">
+                    Started At<span class="fs-4 text-primary" style="margin:0 0 0 10px;">{{  $activity->startedAt }}</span>
+                </li>
+                <li class="list-group-item d-flex align-items-baseline">
+                    Finished At<span class="fs-4 text-primary" style="margin:0 0 0 10px;">{{  $activity->finishedAt }}</span>
+                </li>
+            </ul>
         @endif
     </div>
 @endsection

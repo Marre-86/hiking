@@ -6,6 +6,7 @@ use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use phpGPX\phpGPX;
 
 class ActivityController extends Controller
 {
@@ -62,12 +63,17 @@ class ActivityController extends Controller
             $fileName =  Auth::id() . '-' . Auth::user()->name . '/' . now()->format('Y.m.d-H.i.s') . '.gpx';
             $request->track_file->storeAs('track_files/', $fileName, 'public');
             $activity->track_file = $fileName;
+
+            $gpx = new phpGPX();
+            $file = $gpx->load($request->track_file);
+            $stats = $file->tracks[0]->stats->toArray();
+            $activity->fill($stats);
         }
 
         $activity->save();
 
         flash('The acivity has been added')->success();
-        //return redirect()->route('welcome');
+
         return redirect()->route('activities.show', ['activity' => $activity]);
     }
 
