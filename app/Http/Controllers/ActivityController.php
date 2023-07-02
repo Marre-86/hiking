@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use phpGPX\phpGPX;
+use Carbon\Carbon;
 
 class ActivityController extends Controller
 {
@@ -45,6 +46,7 @@ class ActivityController extends Controller
         $validator = Validator::make($allInput, [
             'filename' => 'ends_with:.gpx,.GPX',
             'track_file' => 'nullable|mimetypes:application/gpx+xml,text/xml,text/plain',
+            'description' => 'nullable'
         ], $customMessages);
 
         if ($validator->fails()) {
@@ -67,8 +69,11 @@ class ActivityController extends Controller
             $gpx = new phpGPX();
             $file = $gpx->load($request->track_file);
             $stats = $file->tracks[0]->stats->toArray();
-            $activity->fill($stats);
+            $statsFormatted = formatStats($stats);
+            $activity->fill($statsFormatted);
         }
+
+        $activity->name = ($request['name'] !== null) ? $request['name'] : getDefaultName($statsFormatted['startedAt']);
 
         $activity->save();
 
@@ -83,7 +88,11 @@ class ActivityController extends Controller
     public function show(Activity $activity)
     {
         $activity = Activity::findOrFail($activity->id);
-        return view('activity.show', ['activity' => $activity]);
+        $startedAt = new Carbon($activity['startedAt']);
+        $date = $startedAt->format('d-M-Y');
+        $startTime = $startedAt->format('H:i');
+
+        return view('activity.show', ['activity' => $activity, 'date' => $date, 'startTime' => $startTime]);
     }
 
     /**

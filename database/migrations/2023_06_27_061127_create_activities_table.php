@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
             $table->string('track_file')->nullable();
             $table->double('distance')->nullable();
             $table->double('avgSpeed')->nullable();
-            $table->double('avgPace')->nullable();
+            $table->string('avgPace')->nullable();
             $table->double('minAltitude')->nullable();
             $table->double('maxAltitude')->nullable();
             $table->double('cumulativeElevationGain')->nullable();
             $table->double('cumulativeElevationLoss')->nullable();
             $table->timestamp('startedAt')->nullable();
-            $table->timestamp('finishedAt')->nullable();
+            $table->string('duration')->nullable();
             $table->timestamps();
         });
     }

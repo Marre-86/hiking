@@ -11,6 +11,7 @@ class Activity extends Model
 
     protected $fillable = [
         'track_file', 'distance', 'avgSpeed', 'avgPace', 'minAltitude', 'maxAltitude',
-        'cumulativeElevationGain', 'cumulativeElevationLoss', 'startedAt', 'finishedAt'
+        'cumulativeElevationGain', 'cumulativeElevationLoss', 'startedAt', 'duration',
+        'description'
     ];
 }

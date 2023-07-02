@@ -13,6 +13,7 @@
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
+        "nesbot/carbon": "^2.67",
         "sibyx/phpgpx": "@RC"
     },
     "require-dev": {
@@ -26,6 +27,9 @@
         "squizlabs/php_codesniffer": "^3.7"
     },
     "autoload": {
+        "files": [
+            "app/helpers.php"
+        ],
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
