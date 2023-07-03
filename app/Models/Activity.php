@@ -14,4 +14,9 @@ class Activity extends Model
         'cumulativeElevationGain', 'cumulativeElevationLoss', 'startedAt', 'duration',
         'description'
     ];
+
+    public function created_by()            // phpcs:ignore
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

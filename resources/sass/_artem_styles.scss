@@ -26,6 +26,16 @@ div[id^=elevation-] {
   }
 }
 
+.w-60 {
+  width:60%;
+  margin-bottom:2rem;
+}
+@media (max-width: 1250px) {
+  .w-60 {
+    width:100%;
+  }
+}
+
 .row {
   margin-bottom:1rem;
 }

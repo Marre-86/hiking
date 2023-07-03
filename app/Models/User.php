@@ -46,4 +46,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function activities()
+    {
+         return $this->hasMany('App\Models\Activities', 'created_by_id');
+    }
 }

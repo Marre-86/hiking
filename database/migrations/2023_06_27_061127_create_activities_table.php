@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->integer('created_by_id')->nullable();
+            $table->foreign('created_by_id')
+                ->references('id')
+                ->on('users');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('track_file')->nullable();

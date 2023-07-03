@@ -10,7 +10,10 @@
                         <div class="collapse navbar-collapse" id="navbarColor01">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('secondPage') }}">Second page</a>
+                                    <a class="nav-link" href="{{ route('secondPage') }}">Add a-y</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('activities.index') }}">Activities</a>
                                 </li>
                             </ul>
 
