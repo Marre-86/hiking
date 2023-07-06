@@ -57,9 +57,10 @@ class ActivityController extends Controller
             'track_file.mimetypes' => __('The content of the file doesn\'t correspond to the type : gpx.'),
         ];
         $validator = Validator::make($allInput, [
+            'name' => 'nullable|max:60',
             'filename' => 'ends_with:.gpx,.GPX',
             'track_file' => 'nullable|mimetypes:application/gpx+xml,text/xml,text/plain',
-            'description' => 'nullable'
+            'description' => 'nullable|max:800'
         ], $customMessages);
 
         if ($validator->fails()) {
@@ -75,7 +76,7 @@ class ActivityController extends Controller
         $activity->fill($data);
 
         if ($request->has('track_file')) {
-            $fileName =  Auth::id() . '-' . Auth::user()->name . '/' . now()->format('Y.m.d-H.i.s') . '.gpx';
+            $fileName =  str_pad(Auth::id(), 3, '0', STR_PAD_LEFT) . '-' . Auth::user()->name . '/' . now()->format('Y.m.d-H.i.s') . '.gpx';   // phpcs:ignore
             $request->track_file->storeAs('track_files/', $fileName, 'public');
             $activity->track_file = $fileName;
 
