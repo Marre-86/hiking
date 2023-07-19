@@ -43,13 +43,13 @@
                 <div class="form-group">
                     <label for="track_file" class="col-sm-3 col-form-label">Track file</label>
                     <div class="col-sm-9">
-                        <input type="file" class="form-control" id="track_file" name="track_file" value="{{ old('image') }}" placeholder="">
+                        <input type="file" class="form-control" id="track_file" name="track_file" value="" placeholder="">
                     </div>          
                 </div>
                 <div class="form-group">
                     <label for="image" class="col-sm-3 col-form-label">Image</label>
                     <div class="col-sm-9">
-                        <input type="file" class="form-control" id="image" name="image" value="{{ old('track_file') }}" placeholder="">
+                        <input type="file" class="form-control" id="image" name="image" value="" placeholder="">
                     </div>          
                 </div>
 

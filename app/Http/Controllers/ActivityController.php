@@ -45,6 +45,7 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+       // dd($request->all());
         $allInput = $request->all();
 
         if ($request->has('track_file')) {
@@ -82,9 +83,11 @@ class ActivityController extends Controller
 
             $gpx = new phpGPX();
             $file = $gpx->load($request->track_file);
-            $stats = $file->tracks[0]->stats->toArray();
-            $statsFormatted = formatStats($stats);
-            $activity->fill($statsFormatted);
+            if ($file->tracks) {
+                $stats = $file->tracks[0]->stats->toArray();
+                $statsFormatted = formatStats($stats);
+                $activity->fill($statsFormatted);
+            }
         }
 
         $activity->name = ($request['name'] !== null) ? $request['name'] : getDefaultName($statsFormatted['startedAt']);

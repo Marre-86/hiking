@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Order;
+namespace Tests\Feature\Activity;
 
 use App\Models\Activity;
 use App\Models\User;
@@ -26,5 +26,15 @@ class IndexTest extends TestCase
 
         $response->assertSee($activityOwn->name);
         $response->assertDontSee($activityOther->name);
+    }
+
+    public function testActivitiesAreNotRenderedForGuest(): void
+    {
+        $this->seed();
+
+        $response = $this
+            ->get(route('activities.index'));
+
+        $response->assertStatus(403);
     }
 }
