@@ -104,4 +104,33 @@ class StoreTest extends TestCase
         $fileName =  '002-John Persimonn/' . now()->format('Y.m.d-H.i.s') . '.gpx';
         Storage::disk('public')->assertMissing('track_files/' . $fileName);
     }
+
+    public function testExtractsRightDataFromGPXTrackFile(): void
+    {
+        $this->seed();
+
+        Storage::fake('test_disk');
+
+        $newActivity = ([
+            'name' => 'Забег в Бишкеке',
+            'track_file' => new \Illuminate\Http\UploadedFile(resource_path('testing/test_zabeg.gpx'), 'test_zabeg.gpx', null, null, true)
+        ]);
+
+        $user = User::where('id', 2)->first();
+        $response = $this
+            ->actingAs($user)
+            ->post(route('activities.store'), $newActivity);
+
+        $activity = Activity::where('name', 'Забег в Бишкеке')->firstOrFail();
+
+        $expectedData = [
+            'distance' => 7.95,
+            'duration' => '0:49:38',
+        ];
+
+        $this->assertEquals($expectedData['distance'], $activity->distance);
+        $this->assertEquals($expectedData['duration'], $activity->duration);
+    }
+
+
 }
