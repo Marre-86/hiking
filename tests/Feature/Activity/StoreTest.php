@@ -113,7 +113,7 @@ class StoreTest extends TestCase
 
         $newActivity = ([
             'name' => 'Забег в Бишкеке',
-            'track_file' => new \Illuminate\Http\UploadedFile(resource_path('testing/test_zabeg.gpx'), 'test_zabeg.gpx', null, null, true)
+            'track_file' => new \Illuminate\Http\UploadedFile(resource_path('testing/test_zabeg.gpx'), 'test_zabeg.gpx', null, null, true)   // phpcs:ignore
         ]);
 
         $user = User::where('id', 2)->first();
@@ -131,6 +131,4 @@ class StoreTest extends TestCase
         $this->assertEquals($expectedData['distance'], $activity->distance);
         $this->assertEquals($expectedData['duration'], $activity->duration);
     }
-
-
 }

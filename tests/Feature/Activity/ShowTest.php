@@ -26,6 +26,4 @@ class ShowTest extends TestCase
         $response->assertOk();
         $response->assertSee($activity->name);
     }
-
-
 }
