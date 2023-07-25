@@ -9,12 +9,14 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarColor01">
                             <ul class="navbar-nav me-auto">
+                              @auth
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('activities.create') }}">Add a-y</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('activities.index') }}">Activities</a>
                                 </li>
+                              @endauth
                             </ul>
 
 
@@ -35,6 +37,9 @@
                                     @else
                                         <a href="{{ route('login') }}" class="btn btn-info">
                                             Log In
+                                        </a>
+                                        <a href="{{ route('register') }}" class="btn btn-info">
+                                            Sign Up
                                         </a>
                                     @endauth
                                 </div>

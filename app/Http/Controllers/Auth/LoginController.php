@@ -23,6 +23,12 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+    protected function authenticated()
+    {
+        if (Auth::check()) {
+            return redirect()->route('activities.index');
+        }
+    }
 
     protected function registerOrLoginUser($data)
     {
@@ -50,6 +56,6 @@ class LoginController extends Controller
         $user = Socialite::driver('google')->stateless()->user();
 
         $this->registerOrLoginUser($user);
-        return redirect()->route('welcome');
+        return redirect()->route('activities.index');
     }
 }
