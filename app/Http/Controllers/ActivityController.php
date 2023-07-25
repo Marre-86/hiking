@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,8 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        $tags = Auth::user()->tags;
+        return view('activity.create', compact('tags'));
     }
 
     /**
@@ -45,7 +47,7 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request->all());
+     //   dd($request->all());
         $allInput = $request->all();
 
         if ($request->has('track_file')) {
@@ -61,7 +63,8 @@ class ActivityController extends Controller
             'name' => 'nullable|max:60',
             'filename' => 'ends_with:.gpx,.GPX',
             'track_file' => 'nullable|mimetypes:application/gpx+xml,text/xml,text/plain',
-            'description' => 'nullable|max:800'
+            'description' => 'nullable|max:800',
+            'tags.*' => 'nullable'
         ], $customMessages);
 
         if ($validator->fails()) {
@@ -70,11 +73,11 @@ class ActivityController extends Controller
                     ->withInput();
         }
 
-        $data = $validator->validated();
+        $validatedData = $validator->validated();
 
         $activity = new Activity();
 
-        $activity->fill($data);
+        $activity->fill($validatedData);
 
         if ($request->has('track_file')) {
             $fileName =  str_pad(Auth::id(), 3, '0', STR_PAD_LEFT) . '-' . Auth::user()->name . '/' . now()->format('Y.m.d-H.i.s') . '.gpx';   // phpcs:ignore
@@ -92,11 +95,22 @@ class ActivityController extends Controller
 
         $activity->name = ($request['name'] !== null) ? $request['name'] : getDefaultName($statsFormatted['startedAt']);
 
-        if (Auth::check()) {
-            $activity->created_by_id = intval(Auth::id());
-        }
+        $activity->created_by_id = intval(Auth::id());
 
         $activity->save();
+
+        if (array_key_exists('tags', $validatedData)) {
+            $tagIds = [];
+            foreach ($validatedData['tags'] as $tagName) {
+                $tag = Tag::firstOrCreate(['name' => $tagName]);
+                $tagIds[] = $tag->id;
+            }
+            $activity->tags()->attach($tagIds);
+
+            $existingTagIds = Auth::user()->tags()->pluck('id')->toArray();
+            $tagsToAttach = Tag::whereIn('id', $tagIds)->whereNotIn('id', $existingTagIds)->get();
+            Auth::user()->tags()->attach($tagsToAttach);
+        }
 
         flash('The acivity has been added')->success();
 

@@ -1,4 +1,12 @@
 @extends('layouts.main')
+
+@push('scripts')
+    <!-- For Tags input-->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+@endpush
+
 @section('content')
 
 <div class="w-30">
@@ -52,6 +60,18 @@
                         <input type="file" class="form-control" id="image" name="image" value="" placeholder="">
                     </div>          
                 </div>
+                <div class="form-group">
+                    <label for="tags" class="col-sm-3 col-form-label">Tags</label>
+                    <div class="col-sm-9">
+                        <select id="tags" name="tags[]" class="form-control" multiple>
+                            @foreach ($tags as $tag)
+                                <option>{{  $tag->name  }}</option>
+                            @endforeach
+                        </select>
+                    </div>          
+                </div>
+
+
 
                 <div style="margin-top:20px">
                     <button class="btn btn-primary">Submit</button>
@@ -60,4 +80,13 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#tags').select2({
+        tags: true,
+        tokenSeparators: [','],
+    });
+});
+</script>
 @endsection

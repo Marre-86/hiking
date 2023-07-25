@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
          return $this->hasMany('App\Models\Activities', 'created_by_id');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag');
+    }
 }

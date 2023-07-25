@@ -4,6 +4,7 @@ namespace Tests\Feature\Activity;
 
 use App\Models\Activity;
 use App\Models\User;
+use App\Models\Tag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Storage;
@@ -25,16 +26,18 @@ class StoreTest extends TestCase
             'application/gpx+xml'
         );
 
+        $tags = ['one', 'seven'];
+
         $newActivity = ([
             'name' => 'Тестовый кросс-поход',
             'description' => 'To call Bowie a transitional figure in rock history is less a judgment than a job descr.',
-            'track_file' => $file
+            'track_file' => $file,
         ]);
 
         $user = User::where('id', 2)->first();
         $response = $this
             ->actingAs($user)
-            ->post(route('activities.store'), $newActivity);
+            ->post(route('activities.store'), [...$newActivity, 'tags' => $tags]);
 
         $activity = Activity::where('name', 'Тестовый кросс-поход')->firstOrFail();
 
@@ -43,6 +46,13 @@ class StoreTest extends TestCase
 
         $response->assertRedirectToRoute('activities.show', ['activity' => $activity]);
         $this->assertDatabaseHas('activities', $newActivityInDB);
+
+        foreach ($tags as $tag) {
+            $this->assertDatabaseHas('activity_tag', [
+                'activity_id' => $activity->id,
+                'tag_id' => Tag::where('name', $tag)->first()->id,
+            ]);
+        }
 
         Storage::disk('public')->assertExists('track_files/' . $fileName);
     }
