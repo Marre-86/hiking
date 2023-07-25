@@ -18,10 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/mappp', function () {
-    return view('secondPage');
-})->name('secondPage');
-
 Auth::routes();
 
 Route::resource('activities', ActivityController::class);

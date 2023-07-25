@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 
 class StoreTest extends TestCase
 {
@@ -48,9 +49,14 @@ class StoreTest extends TestCase
         $this->assertDatabaseHas('activities', $newActivityInDB);
 
         foreach ($tags as $tag) {
+            $tagId = Tag::where('name', $tag)->first()->id;
             $this->assertDatabaseHas('activity_tag', [
                 'activity_id' => $activity->id,
-                'tag_id' => Tag::where('name', $tag)->first()->id,
+                'tag_id' => $tagId,
+            ]);
+            $this->assertDatabaseHas('tag_user', [
+                'user_id' => Auth::user()->id,
+                'tag_id' => $tagId,
             ]);
         }
 

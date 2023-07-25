@@ -25,5 +25,8 @@ class ShowTest extends TestCase
 
         $response->assertOk();
         $response->assertSee($activity->name);
+        foreach ($activity->tags as $tag) {
+            $response->assertSee($tag->name);
+        }
     }
 }

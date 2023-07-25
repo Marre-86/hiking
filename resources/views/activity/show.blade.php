@@ -59,10 +59,17 @@
                             Max Altitude<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->maxAltitude }}</span>m
                         </li>
                     </ul>
-                    <div class="card border-secondary mb-3" style="width: 27rem; clear:both;">
+                    <div class="card border-secondary" style="width: 27rem; clear:both;">
                         <div class="card-header">Notes</div>
                         <div class="card-body">
                             <p class="card-text">{{  $activity->description }}</p>
+                        </div>
+                    </div>
+                    <div class="card border-secondary" style="width: 27rem; border:0">
+                        <div class="card-body">
+                            @foreach ($activity->tags as $tag)
+                                <span class="badge bg-warning">{{  $tag->name  }}</span>
+                            @endforeach
                         </div>
                     </div>
             </div>

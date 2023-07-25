@@ -68,7 +68,7 @@ class ActivityController extends Controller
         ], $customMessages);
 
         if ($validator->fails()) {
-            return redirect(route('secondPage'))
+            return redirect(route('activities.create'))
                     ->withErrors($validator)
                     ->withInput();
         }

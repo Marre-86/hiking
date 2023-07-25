@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Activity;
+use App\Models\Tag;
 
 class ActivitiesTableSeeder extends Seeder
 {
@@ -46,5 +47,18 @@ class ActivitiesTableSeeder extends Seeder
             'duration' => '1:30:37',
             'track_file' => '001-Robb Jones/2023.07.06-19.48.11.gpx'
         ]);
+
+        $this->attachTags();
+    }
+
+    public function attachTags(): void
+    {
+        $activities = Activity::all();
+
+        foreach ($activities as $activity) {
+            $tags = Tag::inRandomOrder()->take(rand(1, 3))->get();
+            $activity->tags()->attach($tags);
+            $activity->created_by->tags()->attach($tags);
+        }
     }
 }
