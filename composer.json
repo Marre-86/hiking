@@ -13,6 +13,7 @@
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
+        "livewire/livewire": "^2.12",
         "nesbot/carbon": "^2.67",
         "sibyx/phpgpx": "@RC"
     },

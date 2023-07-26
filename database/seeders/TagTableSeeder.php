@@ -21,13 +21,27 @@ class TagTableSeeder extends Seeder
             'cold water',
             'poop break',
             'got drenched under the rain',
-            'Kyrgyzstan',
             'alone',
             'group ride',
             'gnarly',
             'got injured',
             'with kiddo on the back',
             'best performance ever',
+            'with company',
+            'with a family',
+            'cave',
+            'in a wetsuit',
+            'Issyk-Kul',
+            'Kyrgyzstan',
+            'Cholpon-Ata',
+            'Park beach (Cholpon-Ata)',
+            'Dog beach (Cholpon-Ata)',
+            'Duck beach (Cholpon-Ata)',
+            'Kapibara beach (Cholpon-Ata)',
+            'Goluboy Issyk-Kul beach (Cholpon-Ata)',
+            'Taiberik beach (Issyk-Kul)',
+            'Kok-Moinok lake',
+            'Bishkek'
         ];
 
         foreach ($tags as $tag) {

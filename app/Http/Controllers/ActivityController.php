@@ -20,17 +20,8 @@ class ActivityController extends Controller
         if (Auth::user() === null) {
             abort(403);
         }
-    //    if (Auth::user()->hasRole('Admin')) {
-    //        $activities = Activity::orderBy('id', 'desc')->paginate(5);
-    //    } else {
-            $activities = Activity::where('created_by_id', Auth::user()->id)->orderBy('startedAt', 'desc')->paginate(5);
-    //    }
-        $activities->each(function ($activity) {
-            $startedAt = new Carbon($activity['startedAt']);
-            $activity['date'] = $startedAt->format('d-M-Y');
-        });
 
-        return view('activity.index', compact('activities'));
+        return view('activity.index');
     }
 
     /**
