@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Activity;
 use App\Models\Tag;
+use App\Models\Sport;
+use App\Models\SportType;
 
 class ActivitiesTableSeeder extends Seeder
 {
@@ -16,7 +18,17 @@ class ActivitiesTableSeeder extends Seeder
     {
         Activity::truncate();
 
+        $sportRun = Sport::where('name', 'Running')->first();
+        $sportSwim = Sport::where('name', 'Swimming')->first();
+        $sportHike = Sport::where('name', 'Hiking')->first();
+
+        $typeEasyRun = SportType::where('name', 'Easy run')->first();
+        $typeLongRun = SportType::where('name', 'Long run')->first();
+        $typeOutdoorSwim = SportType::where('name', 'Outdoor swimming')->first();
+
         Activity::create([
+            'created_by_id' => 2,
+            'sport_id' => $sportHike->id,
             'created_by_id' => 2,
             'name' => 'Поход в высокие горы',
             'description' => 'The site of Toronto lay at the entrance to one of the oldest routes to the northwest, a route known and used by the Huron, Iroquois, and Ojibwe, and was of strategic importance from the beginning of Ontario\'s recorded history.',
@@ -34,6 +46,8 @@ class ActivitiesTableSeeder extends Seeder
 
         Activity::create([
             'created_by_id' => 1,
+            'sport_id' => $sportRun->id,
+            'sport_type_id' => $typeEasyRun->id,
             'name' => 'Забег в Чолпон-Ате',
             'description' => 'Над Белгородом и областью сработала система ПВО, которая сбила «несколько воздушных целей на подлете к городу». Об этом сообщил губернатор Белгородской области Вячеслав Гладков.',
             'distance' => 14.25,
@@ -52,6 +66,7 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportHike->id,
             'name' => 'Hiking with a group (Kok-Moinok lake)',
             'description' => 'With an organized group.',
             'distance' => 24.21,
@@ -71,6 +86,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportRun->id,
+            'sport_type_id' => $typeEasyRun->id,
             'name' => 'Noon run in Bishkek on a scorching day',
             'description' => 'Very hot.',
             'distance' => 8.89,
@@ -90,6 +107,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportSwim->id,
+            'sport_type_id' => $typeOutdoorSwim->id,
             'name' => 'First swimming in Issyk-Kul',
             'description' => 'The water is pretty cool',
             'distance' => 0.69,
@@ -109,6 +128,7 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportHike->id,
             'name' => 'Hiking with Alex and my family',
             'description' => 'Part of the way I carried Alisa on my shoulders.',
             'distance' => 9.27,
@@ -128,6 +148,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportSwim->id,
+            'sport_type_id' => $typeOutdoorSwim->id,
             'name' => 'Swimming in Issyk-Kul',
             'description' => '',
             'distance' => 0.63,
@@ -147,6 +169,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportSwim->id,
+            'sport_type_id' => $typeOutdoorSwim->id,
             'name' => 'Swimming in Issyk-Kul (Taiberik)',
             'description' => '',
             'distance' => 0.53,
@@ -166,6 +190,10 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportRun->id,
+            'sport_type_id' => $typeLongRun->id,
+            'sport_id' => $sportRun->id,
+            'sport_type_id' => $typeLongRun->id,
             'name' => 'Long Run in Cholpon-Ata',
             'description' => '',
             'distance' => 14.25,
@@ -185,6 +213,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportSwim->id,
+            'sport_type_id' => $typeOutdoorSwim->id,
             'name' => 'Swimming in Issyk-Kul',
             'description' => 'Elapsed time - 3 hours 14 minutes (took few long breaks)',
             'distance' => 0.76,
@@ -204,6 +234,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportRun->id,
+            'sport_type_id' => $typeEasyRun->id,
             'name' => 'Easy run in Cholpon-Ata',
             'description' => 'Took couple stops to eat berries from the cherry tree',
             'distance' => 12.87,
@@ -223,6 +255,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportSwim->id,
+            'sport_type_id' => $typeOutdoorSwim->id,
             'name' => 'Swimming in Issyk-Kul',
             'description' => '',
             'distance' => 0.92,
@@ -242,6 +276,7 @@ class ActivitiesTableSeeder extends Seeder
         
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportHike->id,
             'name' => 'Hiking with my family and Kostya',
             'description' => 'The time is represented in the format "HH:mm:ss," where "HH" stands for the hours (two digits, ranging from 00 to 23), "mm" for the minutes (two digits, ranging from 00 to 59), and "ss" for the seconds (two digits, ranging from 00 to 59).',
             'distance' => 12.74,
@@ -261,6 +296,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportSwim->id,
+            'sport_type_id' => $typeOutdoorSwim->id,
             'name' => 'Swimming at a Duck beach',
             'description' => 'Мне по душе строптивый норов<br>Артиста в силе: он отвык<br>От фраз, и прячется от взоров,<br>И собственных стыдится книг.',
             'distance' => 0.57,
@@ -280,6 +317,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportSwim->id,
+            'sport_type_id' => $typeOutdoorSwim->id,
             'name' => 'Swimming at a Dog beach',
             'description' => '',
             'distance' => 0.82,
@@ -300,6 +339,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportRun->id,
+            'sport_type_id' => $typeLongRun->id,
             'name' => 'Забег в Чолпон-Ате под дождём',
             'description' => 'Выбрать несколько стихотворений из корпуса текстов поэта, много писавшего на протяжении пяти десятилетий, — задача трудная. Среди отобранного — стихи разных лет, представляющие и примеры сложного, образного, многозначного метафорического языка раннего Пастернака, и стихи пятидесятых годов, язык которых гораздо ровнее.',
             'distance' => 16.26,
@@ -319,6 +360,8 @@ class ActivitiesTableSeeder extends Seeder
 
         $activity = Activity::create([
             'created_by_id' => 3,
+            'sport_id' => $sportRun->id,
+            'sport_type_id' => $typeEasyRun->id,
             'name' => 'Забег в Чолпон-Ате (несвежий)',
             'description' => 'Пастернаку свойственна парадоксальность мировосприятия, любовь к каламбурам и философичность.',
             'distance' => 9.98,

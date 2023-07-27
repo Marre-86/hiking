@@ -17,6 +17,14 @@ return new class extends Migration
             $table->foreign('created_by_id')
                 ->references('id')
                 ->on('users');
+            $table->integer('sport_id');
+            $table->foreign('sport_id')
+                ->references('id')
+                ->on('sports');
+            $table->integer('sport_type_id')->nullable();
+            $table->foreign('sport_type_id')
+                ->references('id')
+                ->on('sport_types');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('track_file')->nullable();

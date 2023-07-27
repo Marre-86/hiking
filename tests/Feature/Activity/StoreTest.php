@@ -31,6 +31,7 @@ class StoreTest extends TestCase
 
         $newActivity = ([
             'name' => 'Тестовый кросс-поход',
+            'sport_id' => 4,
             'description' => 'To call Bowie a transitional figure in rock history is less a judgment than a job descr.',
             'track_file' => $file,
         ]);
@@ -39,7 +40,7 @@ class StoreTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->post(route('activities.store'), [...$newActivity, 'tags' => $tags]);
-
+        dd($response);
         $activity = Activity::where('name', 'Тестовый кросс-поход')->firstOrFail();
 
         $fileName =  '002-John Persimonn/' . now()->format('Y.m.d-H.i.s') . '.gpx';

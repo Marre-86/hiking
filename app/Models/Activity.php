@@ -20,6 +20,16 @@ class Activity extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function sport()
+    {
+        return $this->belongsTo('App\Models\Sport');
+    }
+
+    public function sport_type()            // phpcs:ignore
+    {
+        return $this->belongsTo('App\Models\SportType');
+    }
+
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag');
