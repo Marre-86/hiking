@@ -52,6 +52,8 @@ class ActivityController extends Controller
         ];
         $validator = Validator::make($allInput, [
             'name' => 'nullable|max:60',
+            'sport' => 'numeric',
+            'sportType' => 'numeric|nullable',
             'filename' => 'ends_with:.gpx,.GPX',
             'track_file' => 'nullable|mimetypes:application/gpx+xml,text/xml,text/plain',
             'description' => 'nullable|max:800',
@@ -84,7 +86,11 @@ class ActivityController extends Controller
             }
         }
 
-        $activity->name = ($request['name'] !== null) ? $request['name'] : getDefaultName($statsFormatted['startedAt']);
+        $activity->name = ($validatedData['name'] !== null) ? $validatedData['name'] : getDefaultName($statsFormatted['startedAt']);   // phpcs:ignore
+        $activity->sport_id = $validatedData['sport'];
+        if (array_key_exists('sportType', $validatedData)) {
+            $activity->sport_type_id = $validatedData['sportType'];
+        }
 
         $activity->created_by_id = intval(Auth::id());
 
