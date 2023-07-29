@@ -2,11 +2,11 @@
 
     <div class="row mb-3">
         <div class="search-activities">
-            <input wire:model="searchActivityName" class="form-control" type="search" placeholder="Search activities...">
+            <input wire:model.live="searchActivityName" class="form-control" type="search" placeholder="Search activities...">
             <small class="form-text text-muted">Search by activity name</small>
         </div>
         <div class="search-activities">
-            <select wire:model="searchSport" class="form-select" required>
+            <select wire:model.live="searchSport" class="form-select" required>
             <option value="">Search by sport</option>
             @foreach ($sports as $sport)
                 <option value="{{ $sport->id }}">{{ $sport->name }}</option>
@@ -15,7 +15,7 @@
             <small class="form-text text-muted">Search by sport</small>
         </div>
         <div class="search-activities">
-            <select wire:model="searchSportType" class="form-select" required>
+            <select wire:model.live="searchSportType" class="form-select" required>
             <option value="">Search by sport type</option>
             @foreach ($sportTypes as $sportType)
                 <option value="{{ $sportType->id }}">{{ $sportType->name }}</option>
@@ -24,7 +24,7 @@
             <small class="form-text text-muted">Search by sport type</small>
         </div>
         <div class="search-activities">        
-            <select wire:model="searchTag1" class="form-select" required>
+            <select wire:model.live="searchTag1" class="form-select" required>
             <option value="">Search tags...</option>
             @foreach ($tags as $tag)
                 <option value="{{ $tag->name }}">{{ $tag->name }}</option>
@@ -33,7 +33,7 @@
             <small class="form-text text-muted">Search by tag 1</small>
         </div>
         <div class="search-activities">
-            <select wire:model="searchTag2" class="form-select" required>
+            <select wire:model.live="searchTag2" class="form-select" required>
             <option value="">Search tags...</option>
             @foreach ($tags as $tag)
                 <option value="{{ $tag->name }}">{{ $tag->name }}</option>

@@ -99,7 +99,7 @@ class ActivitiesTableSeeder extends Seeder
             'cumulativeElevationLoss' => 153,
             'startedAt' => '2023-06-28 11:12:00',
             'duration' => '0:53:13',
-            'track_file' => '003-Yulia Pesochkina/2023.07.26-18.01.00s.gpx'
+            'track_file' => '003-Yulia Pesochkina/2023.07.26-18.01.00.gpx'
         ]);
         $tags = ['Kyrgyzstan', 'Bishkek'];
         $activity->tags()->attach(Tag::whereIn('name', $tags)->pluck('id'));

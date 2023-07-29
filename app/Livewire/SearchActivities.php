@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Activity;
@@ -8,9 +8,14 @@ use App\Models\Sport;
 use App\Models\SportType;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Livewire\WithPagination;
 
 class SearchActivities extends Component
 {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     public $searchActivityName = '';
     public $searchSport = '';
     public $searchSportType = '';
@@ -47,8 +52,6 @@ class SearchActivities extends Component
             })
             ->orderBy('startedAt', 'desc')
             ->paginate(15);
-
-     //   $activities = Activity::where('created_by_id', Auth::user()->id)->orderBy('startedAt', 'desc')->paginate(5);
 
         $activities->each(function ($activity) {
             $startedAt = new Carbon($activity['startedAt']);

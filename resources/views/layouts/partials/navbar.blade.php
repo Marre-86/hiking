@@ -1,7 +1,7 @@
                 <nav class="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
 
                     <div class="container-xxl">
-                        <a href="/">
+                        <a href="/" wire:navigate.hover>
                             <img href="/" src="/pics/my-hiking-logo.png" alt="logo" style="width:2.5rem;">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,10 +11,10 @@
                             <ul class="navbar-nav me-auto">
                               @auth
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('activities.create') }}">Add a-y</a>
+                                    <a class="nav-link" href="{{ route('activities.create') }}" wire:navigate.hover>Add a-y</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('activities.index') }}">Activities</a>
+                                    <a class="nav-link" href="{{ route('activities.index') }}" wire:navigate.hover>Activities</a>
                                 </li>
                               @endauth
                             </ul>

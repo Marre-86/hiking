@@ -1,8 +1,6 @@
 @extends('layouts.main')
 @section('content')
 
-    @livewireStyles
-
     <div class="w-60">
       <div class="card" style="margin-bottom:1rem; min-width:fit-content;">
         <div class="card-header">
@@ -11,7 +9,5 @@
         @livewire('search-activities')
       </div>
     </div>
-
-    @livewireScripts
-    
+  
 @endsection
