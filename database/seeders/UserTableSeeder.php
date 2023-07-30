@@ -33,8 +33,5 @@ class UserTableSeeder extends Seeder
             'email' => 'd@d',
             'password' => Hash::make('dd'),
         ]);
-
-      //  $user = User::where('name', 'Robb Jones')->first();
-      //  $user->assignRole('Admin');
     }
 }

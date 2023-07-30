@@ -15,12 +15,7 @@ class SportTableSeeder extends Seeder
     {
         Sport::truncate();
 
-        $sports = [
-            'Running',
-            'Swimming',
-            'Cycling',
-            'Hiking',
-        ];
+        $sports = json_decode(file_get_contents(database_path('data/sports.json')), true);
 
         foreach ($sports as $sport) {
             Sport::create(['name' => $sport]);
