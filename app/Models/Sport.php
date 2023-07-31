@@ -18,6 +18,6 @@ class Sport extends Model
 
     public function sport_types()            // phpcs:ignore
     {
-        return $this->hasMany('App\Models\Activity', 'sport_id');
+        return $this->hasMany('App\Models\SportType', 'sport_id');
     }
 }
