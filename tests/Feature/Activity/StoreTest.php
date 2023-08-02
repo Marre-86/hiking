@@ -142,7 +142,7 @@ class StoreTest extends TestCase
 
         $expectedData = [
             'distance' => 7.95,
-            'duration' => '0:49:38',
+            'duration' => 2978,
         ];
 
         $this->assertEquals($expectedData['distance'], $activity->distance);

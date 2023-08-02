@@ -54,8 +54,9 @@ class SearchActivities extends Component
             ->paginate(15);
 
         $activities->each(function ($activity) {
-            $startedAt = new Carbon($activity['startedAt']);
-            $activity['date'] = $startedAt->format('d-M-Y');
+            $activity['date'] = getActivityDate($activity['startedAt']);
+            $activity['avgPace'] = setAvgPaceAccordingToSport($activity['duration'], $activity['sport_id'], $activity['distance']);    // phpcs:ignore 
+            $activity['duration'] = formatDuration($activity['duration']);
         });
 
         $tags = Auth::user()->tags;

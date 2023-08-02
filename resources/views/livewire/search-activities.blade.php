@@ -48,7 +48,7 @@
     <thead>
         <tr class="text-center" >
             <th scope="col">Date</th>
-            <th scope="col" style="width:5%">Name</th>
+            <th scope="col" style="width:5%">Sport</th>
             <th scope="col" style="width:25%">Name</th>
             <th scope="col">Distance</th>
             <th scope="col">Duration</th>

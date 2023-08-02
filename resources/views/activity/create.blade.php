@@ -9,8 +9,6 @@
 
 @section('content')
 
-    @livewireStyles
-
     <div class="w-30">
 
         <div class="card">
@@ -79,8 +77,6 @@
             </div>
         </div>
     </div>
-
-    @livewireScripts
 
     <script>
         $(document).ready(function() {

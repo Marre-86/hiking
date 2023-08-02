@@ -29,6 +29,9 @@ class ActivityController extends Controller
      */
     public function create()
     {
+        if (Auth::user() === null) {
+            abort(403);
+        }
         $tags = Auth::user()->tags;
         return view('activity.create', compact('tags'));
     }
@@ -120,11 +123,12 @@ class ActivityController extends Controller
     public function show(Activity $activity)
     {
         $activity = Activity::findOrFail($activity->id);
-        $startedAt = new Carbon($activity['startedAt']);
-        $date = $startedAt->format('d-M-Y');
-        $startTime = $startedAt->format('H:i');
+        $activity['date'] = getActivityDate($activity['startedAt']);
+        $activity['startTime'] = getActivityStartTime($activity['startedAt']);
+        $activity['avgPace'] = setAvgPaceAccordingToSport($activity['duration'], $activity['sport_id'], $activity['distance']);    // phpcs:ignore 
+        $activity['duration'] = formatDuration($activity['duration']);
 
-        return view('activity.show', ['activity' => $activity, 'date' => $date, 'startTime' => $startTime]);
+        return view('activity.show', ['activity' => $activity]);
     }
 
     /**

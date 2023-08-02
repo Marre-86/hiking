@@ -29,8 +29,6 @@ class ActivitiesTableSeeder extends Seeder
                 'name' => $activity['name'],
                 'description' => $activity['description'],
                 'distance' => $activity['distance'],
-                'avgSpeed' => $activity['avgSpeed'],
-                'avgPace' => $activity['avgPace'],
                 'minAltitude' => $activity['minAltitude'],
                 'maxAltitude' => $activity['maxAltitude'],
                 'cumulativeElevationGain' => $activity['cumulativeElevationGain'],

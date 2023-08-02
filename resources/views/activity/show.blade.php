@@ -16,7 +16,7 @@
 @section('content')
     <div class="w-100">
         <p class="text-secondary">
-            {{  $date }}
+            {{  $activity->date }}
             <span class="text-primary-emphasis fs-4" style="margin-left:5px">{{ $activity->name }}</span>
         </p>
         <div style="float:left">
@@ -36,29 +36,28 @@
                             Duration<span class="fs-4 text-primary" style="margin:0 0 0 10px;">{{  $activity->duration }}</span>
                         </li>
                         <li class="list-group-item d-flex align-items-baseline">
-                            Average Speed<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{ $activity->avgSpeed }}</span>km/h
+                            Average Pace<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->avgPace }}</span>
                         </li>
                         <li class="list-group-item d-flex align-items-baseline">
-                            Average Pace<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->avgPace }}</span>/km
-                        </li>
-                        <li class="list-group-item d-flex align-items-baseline">
-                            Started At<span class="fs-4 text-primary" style="margin:0 0 0 10px;">{{  $startTime }}</span>
+                            Started At<span class="fs-4 text-primary" style="margin:0 0 0 10px;">{{  $activity->startTime }}</span>
                         </li>
                     </ul>
-                    <ul class="list-group l-g-2">
-                        <li class="list-group-item d-flex align-items-baseline">
-                            Elevation Gain<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->cumulativeElevationGain }}</span>m
-                        </li>
-                        <li class="list-group-item d-flex align-items-baseline">
-                            Elevation Loss<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->cumulativeElevationLoss }}</span>m
-                        </li>
-                        <li class="list-group-item d-flex align-items-baseline">
-                            Min Altitude<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->minAltitude }}</span>m
-                        </li>
-                        <li class="list-group-item d-flex align-items-baseline">
-                            Max Altitude<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->maxAltitude }}</span>m
-                        </li>
-                    </ul>
+                    @if ($activity->sport->name !== "Swimming")
+                        <ul class="list-group l-g-2">
+                            <li class="list-group-item d-flex align-items-baseline">
+                                Elevation Gain<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->cumulativeElevationGain }}</span>m
+                            </li>
+                            <li class="list-group-item d-flex align-items-baseline">
+                                Elevation Loss<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->cumulativeElevationLoss }}</span>m
+                            </li>
+                            <li class="list-group-item d-flex align-items-baseline">
+                                Min Altitude<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->minAltitude }}</span>m
+                            </li>
+                            <li class="list-group-item d-flex align-items-baseline">
+                                Max Altitude<span class="fs-4 text-primary" style="margin:0 5px 0 10px;">{{  $activity->maxAltitude }}</span>m
+                            </li>
+                        </ul>
+                    @endif
                     <div class="card border-secondary" style="width: 27rem; clear:both;">
                         <div class="card-header">Notes</div>
                         <div class="card-body">

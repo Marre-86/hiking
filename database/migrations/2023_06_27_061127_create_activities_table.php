@@ -29,14 +29,12 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('track_file')->nullable();
             $table->double('distance')->nullable();
-            $table->double('avgSpeed')->nullable();
-            $table->string('avgPace')->nullable();
             $table->double('minAltitude')->nullable();
             $table->double('maxAltitude')->nullable();
             $table->double('cumulativeElevationGain')->nullable();
             $table->double('cumulativeElevationLoss')->nullable();
             $table->timestamp('startedAt')->nullable();
-            $table->string('duration')->nullable();
+            $table->integer('duration')->nullable();
             $table->timestamps();
         });
     }
